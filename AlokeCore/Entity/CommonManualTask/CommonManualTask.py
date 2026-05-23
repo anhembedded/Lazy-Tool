@@ -20,4 +20,3 @@ class ManualTask:
     def Stop_Process_With_Name(self, process_name : list[str]) -> None:
         for name in process_name:
             self.os_system_call.stop_process_by_name(name)
-      

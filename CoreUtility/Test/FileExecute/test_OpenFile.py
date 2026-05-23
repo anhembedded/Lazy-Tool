@@ -17,8 +17,8 @@ class DummyFileRepository(FileRepository):
                 return file
         raise ValueError("Not found")
         
-    def findByType(self, file_type: str) -> List[FileInfo]:
-        return [f for f in self.file_list if f.type == file_type]
+    def findByType(self, type: str) -> List[FileInfo]:
+        return [f for f in self.file_list if f.type == type]
         
     def clear(self) -> None:
         self.file_list.clear()
