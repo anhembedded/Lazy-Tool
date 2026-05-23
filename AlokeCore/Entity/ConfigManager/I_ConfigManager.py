@@ -1,0 +1,9 @@
+from typing import Protocol, Any
+
+class I_ConfigManager(Protocol):
+    def __init__(self, config_dir : str):
+        ...
+    def loadAllConfig(self, file_dir : str) -> dict[str, Any]:
+        ...
+    def saveConfig(self, file_dir : str , config_dict : dict[str, Any]) -> None:
+        ...
