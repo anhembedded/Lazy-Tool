@@ -1,6 +1,6 @@
 from UseCases.FileExecute.FileHandler import FileHandler
 from UseCases.store.File_Repo import InMemoryFileRepository
-from UseCases.OsSystemCall.SystemCall_Factory import SystemCallFactory, OS_Type
+from CoreUtility.OsSystemCall import SystemCallFactory, OS_Type
 
 
 if __name__ == "__main__":

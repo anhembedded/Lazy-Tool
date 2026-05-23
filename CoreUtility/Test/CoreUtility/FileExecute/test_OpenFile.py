@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import List
 from CoreUtility.FileHandle.FileHandler import FileHandler
 from CoreUtility.FileHandle.I_FileHandler import FileInfo, FileRepository
-from CoreUtility.OsSystemCall.SystemCall_Factory import OsSystemCallInterface
+from CoreUtility.OsSystemCall import OsSystemCall
 
 class DummyFileRepository(FileRepository):
     def get_all(self) -> List[FileInfo]:
@@ -32,7 +32,7 @@ def test_fileinfo_dataclass():
 class TestFileHandler:
     @pytest.fixture
     def mock_os_system_call(self):
-        return MagicMock(spec=OsSystemCallInterface)
+        return MagicMock(spec=OsSystemCall)
 
     @pytest.fixture
     def handler(self, mock_os_system_call):

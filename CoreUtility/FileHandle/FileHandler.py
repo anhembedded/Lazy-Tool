@@ -3,10 +3,10 @@ from pathlib import Path
 import re
 import os
 from CoreUtility.FileHandle.I_FileHandler import FileInfo, FileRepository
-from CoreUtility.OsSystemCall.SystemCall_Factory import  OsSystemCallInterface
+from CoreUtility.OsSystemCall import OsSystemCall
 
 class FileHandler:
-    def __init__(self, file_repository: FileRepository, os_system_call : OsSystemCallInterface):
+    def __init__(self, file_repository: FileRepository, os_system_call : OsSystemCall):
         self.file_repository = file_repository
         self.os_system_call = os_system_call
     

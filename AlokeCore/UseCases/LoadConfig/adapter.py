@@ -1,7 +1,7 @@
 
 from typing import Any
 from ast import Dict
-import CoreUtility.OsSystemCall.SystemCall_Factory
+from CoreUtility.OsSystemCall import SystemCallFactory
 from typing import List
 from CoreUtility.LoadConfig.I_LoadConfig import I_ConfigHandle
 from CoreUtility.LoadConfig.LoadConfig import LoadConfigFromJson
