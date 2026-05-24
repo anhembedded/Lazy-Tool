@@ -3,9 +3,6 @@ from abc import abstractmethod
 from ...Entity.Section.Port import CONFIG_KEY
 from .Port.ConfigHandler import IConfigHandler
 from ...Entity.Section.Port import IConfigManager
-
-
-
 class ConfigManager(IConfigManager):
     def __init__(self, config_handler: IConfigHandler):
         self._config_handler = config_handler

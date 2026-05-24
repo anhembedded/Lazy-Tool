@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
-from ....Entity.Section.Section import Section, SectionBuilder
-from ....UseCases.Config.Port.ConfigHandler import IConfigHandler
+from ...Entity.Section.Section import Section, SectionBuilder
+from ..Config.Port.ConfigHandler import IConfigHandler
 
 class SectionRepository():
     def __init__(self):

@@ -1,4 +1,4 @@
-from .Port.SectionRepo import SectionRepository
+from .SectionRepo import SectionRepository
 from enum import Enum
 from ...Entity.Section.Section import Section,SectionBuilder
 from ..Config.Port.ConfigHandler import IConfigHandler
@@ -13,27 +13,19 @@ class SECTION_RESULT(Enum):
 
 
 class SectionManager:
-    def __init__(self, section_runtime_repo: SectionRepository, config_manager : ConfigManager):
-        self._section_runtime_repo = section_runtime_repo
+    def __init__(self, config_manager : ConfigManager):
+        self._section_runtime_repo = SectionRepository()
         self._config_manager: ConfigManager = config_manager
 
-    def new_section(self, name : str) -> SECTION_RESULT:
+    def new_section(self, name : str) -> Section:
 
-        result : SECTION_RESULT = SECTION_RESULT.DEFAULT
         section_id = self._generate_unique_section_id(name)
         section_builder = SectionBuilder()
         config_manager = ConfigManager(self._config_manager._config_handler)
         new_section = section_builder.setSectionId(section_id).setSectionName(name).setConfigHandler(config_manager).build()
-
         self._section_runtime_repo.add_section(new_section)
 
-
-        check_success = self._section_runtime_repo.find_by_id(section_id)
-        if check_success is not None:
-            result = SECTION_RESULT.SUCCESS
-        else:
-            result = SECTION_RESULT.ERROR
-        return result
+        return new_section
 
     def remove_section(self, section_id : str) -> SECTION_RESULT:
         result : SECTION_RESULT = SECTION_RESULT.DEFAULT
