@@ -1,20 +1,19 @@
-from .Port import I_ConfigManager
+from .Port import IConfigManager
 from typing import Any
-
-
+from .Port import CONFIG_KEY
 
 class Section:
     def __init__(self,
                  section_name: str,
                  section_id: str,
-                 config_manager : I_ConfigManager):
+                 config_manager : IConfigManager):
         self.section_name = section_name
         self.section_id = section_id
-        self.configHandler : I_ConfigManager = config_manager
-        self.configDict : dict[str, Any] = {}
+        self.configManager : IConfigManager = config_manager
+        self.configDict : dict[str, str] = {}
 
-    def loadConfig(self):
-        self.configDict = self.configHandler.loadAllConfig(self.section_id)
+    def loadConfig(self, config_file: str) -> None:
+        self.configDict = self.configManager.loadAllConfig(config_file)
 
     def name(self):
         return self.section_name
@@ -32,7 +31,7 @@ class SectionBuilder:
     def setSectionId(self, section_id : str):
         self.section_id = section_id
         return self
-    def setConfigManager(self, config_manager : I_ConfigManager):
+    def setConfigHandler(self, config_manager : IConfigManager):
         self.config_manager = config_manager
         return self
     def build(self) -> Section:

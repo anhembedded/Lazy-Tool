@@ -1,20 +1,24 @@
 from abc import ABC, abstractmethod
-from ....Entity.Section.Section import Section
+from ....Entity.Section.Section import Section, SectionBuilder
+from ....UseCases.Config.Port.ConfigHandler import IConfigHandler
 
+class SectionRepository():
+    def __init__(self):
+        self.sections_runtime_store : dict[str, Section] = {}
 
-class ISectionRepository(ABC):
-    def __init__(self, *args, **kwargs):
-        ...
-    @abstractmethod
-    def add_section(self, section_id: str , section_name: str) -> None: pass
-    @abstractmethod
-    def remove_section(self, section_id: str) -> None: pass
-    @abstractmethod
+    def add_section(self, section: Section) -> None:
+        self._push_to_runtime_store(section.id(), section)
+
+    def remove_section(self, section_id: str) -> None:
+        self._remove_from_runtime_store(section_id)
+
     def find_by_id(self, section_id: str) -> Section | None:
-        """Return Section if found, None if not found."""
-        ...
-    @abstractmethod
-    def save_runtime_to_database(self) -> None: pass
-    @abstractmethod
-    def load_runtime_from_database(self) -> Section | None: pass
+        return self.sections_runtime_store.get(section_id, None)
 
+
+    def _push_to_runtime_store(self, section_id: str, section_obj: Section) -> None:
+        self.sections_runtime_store[section_id] = section_obj
+
+    def _remove_from_runtime_store(self, section_id: str) -> None:
+        if section_id in self.sections_runtime_store:
+            del self.sections_runtime_store[section_id]
