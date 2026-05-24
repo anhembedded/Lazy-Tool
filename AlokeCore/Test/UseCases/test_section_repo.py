@@ -6,8 +6,8 @@ class DummyConfigManager(IConfigManager):
     def __init__(self):
         pass
 
-    def loadAllConfig(self, config_file: str) -> dict[str, str]:
-        return {"config_file": config_file}
+    def loadAllConfig(self, file_dir: str) -> dict[str, str]:
+        return {"file_dir": file_dir}
 
 
 def make_section(section_name: str = "Section 1", section_id: str = "section_1"):
