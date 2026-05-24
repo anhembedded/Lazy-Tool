@@ -7,7 +7,7 @@ from CoreUtility.LoadConfig.I_LoadConfig import I_ConfigHandle
 from CoreUtility.LoadConfig.LoadConfig import LoadConfigFromJson
 
 
-class LoadConfig:
+class ConfigHandler:
     def __init__(self):
         self.loadConfigHandler : I_ConfigHandle = LoadConfigFromJson()
         self.result :   dict[str, Any] = {}
